@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: brown;
+}
+
+.general-container {
+    width: 100%;
+
+    padding: 0px 10px;
+}
+
+.header {
+    margin: 30px 0px;
+    padding: 10px 5px 10px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 5px;
+    background-color: red;
+}
+
+.title-container h1 {
+    font-size: 1.6em;
+}
+
+.header-btn {
+    border-radius: 3px;
+    padding: 3px;
+
+    color: white;
+    background-color: black;
+
+    
+}
+
+.main {
+    background-color: blue;
+}
+
+.task-container {
+    margin-bottom: 15px;
+    position: relative;
+    background-color: purple;
+}
+
+.task-list {
+}
+
+.task-item {
+    padding: 10px 30px 10px 10px;
+
+    display: flex;
+    align-items: center;
+
+    border-radius: 5px;
+    background-color: red;
+}
+
+.task-check-container {
+    margin-right: 10px;
+    
+}
+
+.task-check {
+    width: 15px;
+    height: 15px;
+
+    margin-top: 5px;
+}
+
+.task-text-container {
+    
+}
+
+.delete-container-button {
+    position: absolute;
+    right: 2px;
+}
+
+.delete-btn {
+    padding: 8px 12px;
+
+    font-size: .7em;
+    font-weight: bold;
+
+    border-radius: 5px;
+}
+
+.task-input-container {
+}
+
+.task-input {
+    width: 100%;
+    height: 35px;
+}
