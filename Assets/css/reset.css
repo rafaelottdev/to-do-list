@@ -11,3 +11,7 @@
 
     border: none;
 }
+
+button {
+    cursor: pointer;   
+}

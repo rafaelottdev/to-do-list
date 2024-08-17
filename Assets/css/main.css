@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
+    padding-bottom: 50px;
     font-family: 'Roboto Condensed', sans-serif;
     background-color: brown;
 }
@@ -19,47 +20,61 @@ body {
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     border-radius: 5px;
-    background-color: red;
+
+    color: white;
+    background-color: black;
 }
 
 .title-container h1 {
     font-size: 1.6em;
+
+    margin-right: 45px;
 }
 
 .header-btn {
     border-radius: 3px;
-    padding: 3px;
+    padding: 6px;
 
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
 
     
 }
 
+.header-btn:hover {
+    color: black;
+    background-color: white;
+}
+
+.add-button-container {
+    margin-right: 5px;
+}
+
 .main {
-    background-color: blue;
+
 }
 
 .task-container {
     margin-bottom: 15px;
     position: relative;
-    background-color: purple;
 }
 
 .task-list {
 }
 
 .task-item {
-    padding: 10px 30px 10px 10px;
+    margin-bottom: 10px;
+    padding: 10px 50px 10px 10px;
 
     display: flex;
     align-items: center;
 
     border-radius: 5px;
-    background-color: red;
+    
+    color: white;
+    background-color: black;
 }
 
 .task-check-container {
@@ -84,12 +99,16 @@ body {
 }
 
 .delete-btn {
+    margin-right: 10px;
     padding: 8px 12px;
 
     font-size: .7em;
     font-weight: bold;
 
     border-radius: 5px;
+
+    color: black;
+    background-color: white;
 }
 
 .task-input-container {
@@ -98,4 +117,95 @@ body {
 .task-input {
     width: 100%;
     height: 35px;
+
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+@media (min-width: 389px) {
+    .title-container h1 {
+        margin-right: 70px;
+    }
+}
+
+@media (min-width: 411px) {
+    .title-container h1 {
+        margin-right: 95px;
+    }
+}
+
+@media (min-width: 427px) {
+    .title-container h1 {
+        margin-right: 110px;
+    }
+}
+
+@media (min-width: 767px) {
+    .title-container h1 {
+        margin-right: 210px;
+    }
+
+    .general-container {
+        padding: 0px 130px;
+    }
+}
+
+@media (min-width: 799px) {
+    .title-container h1 {
+        margin-right: 245px;
+    }
+
+    .general-container {
+        padding: 0px 130px;
+    }
+}
+
+@media (min-width: 819px) {
+    .title-container h1 {
+        margin-right: 260px;
+    }
+
+    .general-container {
+        padding: 0px 130px;
+    }
+}
+
+@media (min-width: 833px) {
+    .title-container h1 {
+        margin-right: 275px;
+    }
+
+    .general-container {
+        padding: 0px 130px;
+    }
+}
+
+@media (min-width: 883px) {
+    .title-container h1 {
+        margin-right: 320px;
+    }
+
+    .general-container {
+        padding: 0px 130px;
+    }
+}
+
+@media (min-width: 1279px) {
+    .title-container h1 {
+        margin-right: 380px;
+    }
+
+    .general-container {
+        padding: 0px 300px;
+    }
+}
+
+@media (min-width: 1468px) {
+    .title-container h1 {
+        margin-right: 410px;
+    }
+
+    .general-container {
+        padding: 0px 400px;
+    }
 }
