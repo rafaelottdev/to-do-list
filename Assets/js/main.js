@@ -1,11 +1,7 @@
 "use strict"
 
-//  Pegar tambem o enter
-
 const addBtn = document.querySelector('.add-button')
 const deleteBtn = document.querySelector('.delete-button')
-
-// const deleteCurrentTaskBtn = document.querySelector('.delete-btn')
 
 const inputTask = document.querySelector('.task-input')
 const taskListElement = document.querySelector('.task-list')
@@ -35,7 +31,6 @@ const htmlCreation = function(text) {
         button.innerText = 'X'
         button.classList.add('delete-btn')
     
-        // ADICIONANDO DENTRO
         div1.appendChild(input)
         div2.appendChild(p)
         div3.appendChild(button)
@@ -48,30 +43,45 @@ const htmlCreation = function(text) {
     }
 }
 
+const deleteCurrentTask = function(event) {
+    const clickedElement = event.target
+    const currentTask = clickedElement.parentNode.parentNode
+
+   currentTask.remove()
+}
+
 const addTask = function() {
-    // limpar input
-    
     const taskText = inputTask.value
 
     htmlCreation(taskText)
+
+    inputTask.value = ''
+    inputTask.focus()
+
+    const deleteCurrentTaskListBtn = [... document.querySelectorAll('.delete-btn')]
+
+    deleteCurrentTaskListBtn.forEach(btn => {
+        btn.addEventListener('click', deleteCurrentTask)
+    })
 }
 
 const deleteTaskList = function() {
-    // limpar input
-
     const taskList = [... document.querySelectorAll('.task-item')]
 
     taskList.forEach(task => {
         task.remove()
     })
+
+    inputTask.value = ''
+    inputTask.focus()
 }
 
-const deleteCurrentTask = function() {
-
+const edentifyKey = function(event) {
+    if(event.key == 'Enter') {
+        addTask()
+    }
 }
-
 
 addBtn.addEventListener('click', addTask)
 deleteBtn.addEventListener('click', deleteTaskList)
-
-// deleteCurrentTaskBtn.addEventListener('click', deleteCurrentTask)
+inputTask.addEventListener('keyup', edentifyKey)
