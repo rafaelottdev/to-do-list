@@ -1,142 +1,94 @@
 "use strict"
 
-let banco = []
-
 const addBtn = document.querySelector('.add-button')
+const deleteBtn = document.querySelector('.delete-button')
 
-const getBanco = () => JSON.parse(localStorage.getItem('todoList')) ?? []
-const setBanco = (banco) => localStorage.setItem('todoList', JSON.stringify(banco))
+const inputTask = document.querySelector('.task-input')
+const taskListElement = document.querySelector('.task-list')
 
-function showContent(tarefa, status, indice) {
-    const label = document.createElement('label')
+const htmlCreation = function(text) {
+    if(text != '') {
+        const li = document.createElement('li')
+        li.classList.add('item-list')
 
-    label.innerHTML = `
-        <input type="checkbox" ${status} data-indice=${indice}>
-        <div>${tarefa}</div>
-        <input type="button" value="X" data-indice=${indice}>
-    `
+        const label = document.createElement('label')
+        label.classList.add('task-item')
 
-    document.querySelector('.task-list').appendChild(label)
-}
+    
+        const div1 = document.createElement('div')
+        div1.classList.add('task-check-container')
+    
+        const input = document.createElement('input')
+        input.type = 'checkbox'
+        input.classList.add('task-check')
+    
+        const div2 = document.createElement('div')
+        div2.classList.add('task-text-container')
+    
+        const p = document.createElement('p')
+        p.innerText = text
+        
+        const div3 = document.createElement('div')
+        div3.classList.add('delete-container-button')
+    
+        const button = document.createElement('button')
+        button.innerText = 'X'
+        button.classList.add('delete-btn')
+    
+        div1.appendChild(input)
+        div2.appendChild(p)
+        div3.appendChild(button)
+    
+        label.appendChild(div1)
+        label.appendChild(div2)
+        label.appendChild(div3)
 
-function scrollTask() {
-    const banco = getBanco()
-
-    banco.forEach((item, indice) => {
-        showContent(item.tarefa, item.status, indice)
-    });
-}
-
-function setTask(text) {
-    const banco = getBanco()
-
-    banco.push({'tarefa': text, 'status': ''})
-
-    setBanco(banco)
-
-    scrollTask()
-}
-
-function valueValidation() {
-    const inputTask = document.querySelector('.task-input')
-    const inputValue = inputTask.value
-
-    if(inputValue != '') {
-        setTask(inputValue)
+        li.appendChild(label)
+    
+        taskListElement.appendChild(li)
     }
 }
 
-addBtn.addEventListener('click', valueValidation)
-
-// const addBtn = document.querySelector('.add-button')
-// const deleteBtn = document.querySelector('.delete-button')
-
-// const inputTask = document.querySelector('.task-input')
-// const taskListElement = document.querySelector('.task-list')
-
-// const htmlCreation = function(text) {
-//     if(text != '') {
-//         const li = document.createElement('li')
-//         li.classList.add('item-list')
-
-//         const label = document.createElement('label')
-//         label.classList.add('task-item')
-
+const deleteCurrentTask = function(event) {
+    const clickedElement = event.target
+    const currentTask = clickedElement.parentNode.parentNode
     
-//         const div1 = document.createElement('div')
-//         div1.classList.add('task-check-container')
-    
-//         const input = document.createElement('input')
-//         input.type = 'checkbox'
-//         input.classList.add('task-check')
-    
-//         const div2 = document.createElement('div')
-//         div2.classList.add('task-text-container')
-    
-//         const p = document.createElement('p')
-//         p.innerText = text
-        
-//         const div3 = document.createElement('div')
-//         div3.classList.add('delete-container-button')
-    
-//         const button = document.createElement('button')
-//         button.innerText = 'X'
-//         button.classList.add('delete-btn')
-    
-//         div1.appendChild(input)
-//         div2.appendChild(p)
-//         div3.appendChild(button)
-    
-//         label.appendChild(div1)
-//         label.appendChild(div2)
-//         label.appendChild(div3)
+    currentTask.remove()
+}
 
-//         li.appendChild(label)
-    
-//         taskListElement.appendChild(li)
-//     }
-// }
+const addTask = function() {
+    const taskText = inputTask.value
 
-// const deleteCurrentTask = function(event) {
-//     const clickedElement = event.target
-//     const currentTask = clickedElement.parentNode.parentNode
-    
-//     currentTask.remove()
-// }
+    htmlCreation(taskText)
 
-// const addTask = function() {
-//     const taskText = inputTask.value
+    inputTask.value = ''
+    inputTask.focus()
 
-//     htmlCreation(taskText)
+    const deleteCurrentTaskListBtn = [... document.querySelectorAll('.delete-btn')]
+    const itemList = [... document.querySelectorAll('.item-list')]
 
-//     inputTask.value = ''
-//     inputTask.focus()
+    deleteCurrentTaskListBtn.forEach(btn => {
+        btn.addEventListener('click', deleteCurrentTask)
+    })
+}
 
-//     const deleteCurrentTaskListBtn = [... document.querySelectorAll('.delete-btn')]
-//     const itemList = [... document.querySelectorAll('.item-list')]
+const deleteTaskList = function() {
+    const taskList = [... document.querySelectorAll('.task-item')]
 
-//     deleteCurrentTaskListBtn.forEach(btn => {
-//         btn.addEventListener('click', deleteCurrentTask)
-//     })
-// }
+    taskList.forEach(task => {
+        task.remove()
+    })
 
-// const deleteTaskList = function() {
-//     const taskList = [... document.querySelectorAll('.task-item')]
+    inputTask.value = ''
+    inputTask.focus()
+}
 
-//     taskList.forEach(task => {
-//         task.remove()
-//     })
+const edentifyKey = function(event) {
+    if(event.key == 'Enter') {
+        addTask()
+    }
+}
 
-//     inputTask.value = ''
-//     inputTask.focus()
-// }
-
-// const edentifyKey = function(event) {
-//     if(event.key == 'Enter') {
-//         addTask()
-//     }
-// }
-
-// addBtn.addEventListener('click', addTask)
-// deleteBtn.addEventListener('click', deleteTaskList)
-// inputTask.addEventListener('keyup', edentifyKey)
+addBtn.addEventListener('click', addTask)
+deleteBtn.addEventListener('click', deleteTaskList)
+inputTask.addEventListener('keyup', edentifyKey)
